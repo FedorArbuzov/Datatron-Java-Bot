@@ -10,20 +10,73 @@ import org.telegram.telegrambots.exceptions.TelegramApiException;
 import java.util.ArrayList;
 import java.util.List;
 
+
 class Datatron extends TelegramLongPollingBot {
 
     @Override
     public void onUpdateReceived(Update update) {
-        // We check if the update has a message and the message has text
+        //System.out.println(update);
+
+        if(update.hasCallbackQuery()){
+            System.out.println(update.getCallbackQuery().getData());
+        }
+
+
+        // get text from bot
         if (update.hasMessage() && update.getMessage().hasText()) {
-            SendMessage message = new SendMessage() // Create a SendMessage object with mandatory fields
-                    .setChatId(update.getMessage().getChatId())
-                    .setText(update.getMessage().getText());
-            try {
-                sendMessage(message); // Call method to send the message
-                sendCustomKeyboard(message.getChatId());
-            } catch (TelegramApiException e) {
-                e.printStackTrace();
+
+            String messageText = update.getMessage().getText();
+
+            if(messageText.startsWith("/start")) {
+                SendMessage message = new SendMessage() // Create a SendMessage object with mandatory fields
+                        .setChatId(update.getMessage().getChatId())
+                        .setText(Constants.START_MSG);
+                try {
+                    sendMessage(message); // Call method to send the message
+                    } catch (TelegramApiException e) {
+                    e.printStackTrace();
+                }
+            }
+
+            if(messageText.startsWith("/help")){
+
+
+//                SendMessage message = new SendMessage();
+//                message.setText("First message without command");
+//                message.setChatId(update.getMessage().getChatId());
+//                InlineKeyboardMarkup markup = new InlineKeyboardMarkup();
+//                List<List<InlineKeyboardButton>> keyboard = new ArrayList<>();
+//                List<InlineKeyboardButton> row = new ArrayList<>();
+//                InlineKeyboardButton button = new InlineKeyboardButton();
+//                button.setText("Edit message");
+//                button.setCallbackData("EDIT");
+//                row.add(button);
+//                keyboard.add(row);
+//                markup.setKeyboard(keyboard);
+//                message.setReplyMarkup(markup);
+//                try {
+//                    sendMessage(message);
+//                } catch (Throwable e) {
+//                    e.printStackTrace();
+//                }
+                SendMessage message = new SendMessage() // Create a SendMessage object with mandatory fields
+                        .setChatId(update.getMessage().getChatId())
+                        .setText(Constants.HELP_MSG);
+                try {
+                    sendMessage(message); // Call method to send the message
+                    } catch (TelegramApiException e) {
+                    e.printStackTrace();
+                }
+
+            }
+
+            if(messageText.startsWith("/search")){
+                if(messageText.endsWith("/search")){
+
+                }
+                else{
+                    //TODO: top machine learning algorithm
+                }
             }
         }
     }
