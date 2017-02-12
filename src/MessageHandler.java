@@ -1,3 +1,4 @@
+import Commands.HelpCommand;
 import Commands.StartCommand;
 import answerPackage.Answer;
 import org.telegram.telegrambots.api.objects.Audio;
@@ -36,6 +37,12 @@ public class MessageHandler {
                 return start.getAnswer();
 
             }
+            else if(text.startsWith("/help")){
+
+                HelpCommand help = new HelpCommand(text);
+                return help.getAnswer();
+            }
+
 
         }
 
