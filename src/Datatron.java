@@ -39,7 +39,7 @@ class Datatron extends TelegramLongPollingBot {
 
             //            System.out.println(update.getCallbackQuery().getData());
                 SendMessage message = new SendMessage() // Create a SendMessage object with mandatory fields
-                        .setChatId(update.getCallbackQuery().getMessage().getChatId())
+                        .setChatId(messageFromUser.getChatId())
                         .setText(answer.getTextAnswer());
                 try {
                     sendMessage(message); // Call method to send the message

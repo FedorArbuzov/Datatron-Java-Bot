@@ -22,6 +22,10 @@ public class MessageHandler {
 
     }
 
+    public Long getChatId(){
+        return chatId;
+    }
+
     public Answer getAnswer(){
 
         if(text != null){
