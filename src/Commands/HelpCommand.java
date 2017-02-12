@@ -13,6 +13,8 @@ public class HelpCommand extends  Command {
 
     @Override
     public Answer getAnswer(){
+
+        //TODO: create matrix
         Answer answer = new Answer(ConstantsCommands.HELP_MSG, null);
 
         return answer;

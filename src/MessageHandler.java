@@ -1,4 +1,5 @@
 import Commands.HelpCommand;
+import Commands.SearchCommand;
 import Commands.StartCommand;
 import answerPackage.Answer;
 import org.telegram.telegrambots.api.objects.Audio;
@@ -41,6 +42,11 @@ public class MessageHandler {
 
                 HelpCommand help = new HelpCommand(text);
                 return help.getAnswer();
+            }
+
+            else if(text.startsWith("/search")){
+                SearchCommand search = new SearchCommand(text);
+                return search.getAnswer();
             }
 
 
