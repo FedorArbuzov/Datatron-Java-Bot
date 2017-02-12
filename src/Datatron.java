@@ -1,15 +1,9 @@
+import answerPackage.Answer;
 import org.telegram.telegrambots.api.methods.send.SendMessage;
 import org.telegram.telegrambots.api.objects.Audio;
 import org.telegram.telegrambots.api.objects.Update;
-import org.telegram.telegrambots.api.objects.replykeyboard.InlineKeyboardMarkup;
-import org.telegram.telegrambots.api.objects.replykeyboard.ReplyKeyboardMarkup;
-import org.telegram.telegrambots.api.objects.replykeyboard.buttons.InlineKeyboardButton;
-import org.telegram.telegrambots.api.objects.replykeyboard.buttons.KeyboardRow;
 import org.telegram.telegrambots.bots.TelegramLongPollingBot;
 import org.telegram.telegrambots.exceptions.TelegramApiException;
-
-import java.util.ArrayList;
-import java.util.List;
 
 
 class Datatron extends TelegramLongPollingBot {
@@ -38,7 +32,28 @@ class Datatron extends TelegramLongPollingBot {
             userId = update.getMessage().getChatId();
         }
 
-        MessageMain messageFromUser = new MessageMain(userId, messageText, callbackData, audio);
+        MessageHandler messageFromUser = new MessageHandler(userId, messageText, callbackData, audio);
+        Answer answer = messageFromUser.getAnswer();
+
+        if(answer.getMatrixButton() == null){
+
+            //            System.out.println(update.getCallbackQuery().getData());
+                SendMessage message = new SendMessage() // Create a SendMessage object with mandatory fields
+                        .setChatId(update.getCallbackQuery().getMessage().getChatId())
+                        .setText(answer.getTextAnswer());
+                try {
+                    sendMessage(message); // Call method to send the message
+                } catch (TelegramApiException e) {
+                    e.printStackTrace();
+                }
+
+        }
+        else{
+
+            // TODO : create answer with matrix
+
+        }
+
 //        //System.out.println(update);
 //
 //        if(update.hasCallbackQuery()){
@@ -62,7 +77,7 @@ class Datatron extends TelegramLongPollingBot {
 //            if(messageText.startsWith("/start")) {
 //                SendMessage message = new SendMessage() // Create a SendMessage object with mandatory fields
 //                        .setChatId(update.getMessage().getChatId())
-//                        .setText(Constants.START_MSG);
+//                        .setText(Commands.ConstantsCommands.START_MSG);
 //                try {
 //                    sendMessage(message); // Call method to send the message
 //                    } catch (TelegramApiException e) {
@@ -95,7 +110,7 @@ class Datatron extends TelegramLongPollingBot {
 //                }
 ////                SendMessage message = new SendMessage() // Create a SendMessage object with mandatory fields
 ////                        .setChatId(update.getMessage().getChatId())
-////                        .setText(Constants.HELP_MSG);
+////                        .setText(Commands.ConstantsCommands.HELP_MSG);
 ////                try {
 ////                    sendMessage(message); // Call method to send the message
 ////                    } catch (TelegramApiException e) {

@@ -1,7 +1,9 @@
+package Commands;
+
 /**
  * Created by fedor on 11.02.17.
  */
-public class Constants {
+public final class ConstantsCommands {
 
     public static String START_MSG =
     "Я - экспертная система Datatron😊 Со мной вы можете быстро получить доступ к финансовым данным как России в целом, так и любого ее региона." + "\n" +
