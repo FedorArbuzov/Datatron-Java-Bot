@@ -17,5 +17,16 @@ public class ButtonTelegram {
 
     }
 
+    public String getText(){
+        return text;
+    }
+
+    public String getCallbackData(){
+        return callbackData;
+    }
+
+    public String getUrl(){
+        return url;
+    }
 
 }

@@ -1,9 +1,15 @@
 import answerPackage.Answer;
+import answerPackage.ButtonTelegram;
 import org.telegram.telegrambots.api.methods.send.SendMessage;
 import org.telegram.telegrambots.api.objects.Audio;
 import org.telegram.telegrambots.api.objects.Update;
+import org.telegram.telegrambots.api.objects.replykeyboard.InlineKeyboardMarkup;
+import org.telegram.telegrambots.api.objects.replykeyboard.buttons.InlineKeyboardButton;
 import org.telegram.telegrambots.bots.TelegramLongPollingBot;
 import org.telegram.telegrambots.exceptions.TelegramApiException;
+
+import java.util.ArrayList;
+import java.util.List;
 
 
 class Datatron extends TelegramLongPollingBot {
@@ -50,7 +56,51 @@ class Datatron extends TelegramLongPollingBot {
         }
         else{
 
-            // TODO : create answer with matrix
+                SendMessage message = new SendMessage();
+
+                message.setText(answer.getTextAnswer());
+
+                message.setChatId(messageFromUser.getChatId());
+
+                List<List<ButtonTelegram>> matrixButton = answer.getMatrixButton();
+
+
+                InlineKeyboardMarkup markup = new InlineKeyboardMarkup();
+
+                List<List<InlineKeyboardButton>> keyboard = new ArrayList<>();
+
+                for(int i = 0; i < matrixButton.size(); i++){
+
+                    List<InlineKeyboardButton> row = new ArrayList<>();
+
+                    for(int i1 = 0; i1 < matrixButton.get(i).size(); i1++){
+
+                        InlineKeyboardButton button = new InlineKeyboardButton();
+
+                        button.setText(matrixButton.get(i).get(i1).getText());
+
+                        if(matrixButton.get(i).get(i1).getCallbackData() != null){
+                            button.setCallbackData(matrixButton.get(i).get(i1).getCallbackData());
+                        }
+
+                        if(matrixButton.get(i).get(i1).getUrl() != null){
+                            button.setUrl(matrixButton.get(i).get(i1).getUrl());
+                        }
+
+
+                        row.add(button);
+                    }
+
+                    keyboard.add(row);
+                }
+
+                markup.setKeyboard(keyboard);
+                message.setReplyMarkup(markup);
+                try {
+                    sendMessage(message);
+                } catch (Throwable e) {
+                    e.printStackTrace();
+                }
 
         }
 
