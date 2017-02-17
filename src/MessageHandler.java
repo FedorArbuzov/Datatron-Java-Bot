@@ -48,7 +48,10 @@ public class MessageHandler {
                 SearchCommand search = new SearchCommand(text);
                 return search.getAnswer();
             }
+            else{
 
+                //TODO: AWESOME MACHINE LEARNING ALGORITHM
+            }
 
         }
 
