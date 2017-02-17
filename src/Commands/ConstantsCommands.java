@@ -25,4 +25,6 @@ public final class ConstantsCommands {
             "Для нас важно ваше мнение о работе Datatron. Вы можете оставить отзыв о боте, написав на почту datatron.bot@gmail.com или нажав кнопку \"Оценить\"." + "\n\n" +
     "Дополнительно:" + "\n" +
             "Использует Yandex SpeechKit Cloud";
+
+    public static String SEARCH_STEP1 = "Нажмите на одну из кнопок!";
 }

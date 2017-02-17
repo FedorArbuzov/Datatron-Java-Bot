@@ -2,6 +2,7 @@ import Commands.HelpCommand;
 import Commands.SearchCommand;
 import Commands.StartCommand;
 import answerPackage.Answer;
+import answerPackage.CallbackAnswer;
 import org.telegram.telegrambots.api.objects.Audio;
 
 /**
@@ -48,11 +49,21 @@ public class MessageHandler {
                 SearchCommand search = new SearchCommand(text);
                 return search.getAnswer();
             }
+            else if(text.startsWith("/cr")){
+
+            }
             else{
 
                 //TODO: AWESOME MACHINE LEARNING ALGORITHM
+
+
             }
 
+        }
+        else if(callbackData != null){
+
+            CallbackAnswer callbackAnswer = new CallbackAnswer(callbackData);
+            return callbackAnswer.getAnswer();
         }
 
         return null;
