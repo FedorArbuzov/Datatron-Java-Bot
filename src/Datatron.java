@@ -1,5 +1,6 @@
 import answerPackage.Answer;
 import answerPackage.ButtonTelegram;
+import com.sun.org.apache.xpath.internal.SourceTree;
 import org.telegram.telegrambots.api.methods.send.SendMessage;
 import org.telegram.telegrambots.api.objects.Audio;
 import org.telegram.telegrambots.api.objects.Update;
@@ -32,16 +33,30 @@ class Datatron extends TelegramLongPollingBot {
             userId = update.getCallbackQuery().getMessage().getChatId();
         }
 
-        // TODO: create audio hendler
-        if(update.getMessage().getAudio() != null){
-            audio = update.getMessage().getAudio();
-            userId = update.getMessage().getChatId();
-        }
+//        // TODO: create audio hendler
+//        if(update.getMessage().getAudio() != null){
+//            audio = update.getMessage().getAudio();
+//            userId = update.getMessage().getChatId();
+//        }
 
         MessageHandler messageFromUser = new MessageHandler(userId, messageText, callbackData, audio);
         Answer answer = messageFromUser.getAnswer();
         System.out.println(answer);
-        if(answer.getMatrixButton() == null){
+        if(answer == null){
+            System.out.println("Непонятный запрос ");
+            SendMessage message = new SendMessage() // Create a SendMessage object with mandatory fields
+                    .setChatId(messageFromUser.getChatId())
+                    .setText("Мы вас не поняли ((");
+            try {
+                sendMessage(message); // Call method to send the message
+            } catch (TelegramApiException e) {
+                e.printStackTrace();
+            }
+        }
+        else {
+
+
+            if (answer.getMatrixButton() == null) {
                 SendMessage message = new SendMessage() // Create a SendMessage object with mandatory fields
                         .setChatId(messageFromUser.getChatId())
                         .setText(answer.getTextAnswer());
@@ -51,8 +66,7 @@ class Datatron extends TelegramLongPollingBot {
                     e.printStackTrace();
                 }
 
-        }
-        else{
+            } else {
 
                 SendMessage message = new SendMessage();
 
@@ -60,28 +74,28 @@ class Datatron extends TelegramLongPollingBot {
 
                 message.setChatId(messageFromUser.getChatId());
 
-                List<List<ButtonTelegram>> matrixButton = answer.getMatrixButton();
+                ArrayList<ArrayList<ButtonTelegram>> matrixButton = answer.getMatrixButton();
 
 
                 InlineKeyboardMarkup markup = new InlineKeyboardMarkup();
 
                 List<List<InlineKeyboardButton>> keyboard = new ArrayList<>();
 
-                for(int i = 0; i < matrixButton.size(); i++){
+                for (int i = 0; i < matrixButton.size(); i++) {
 
                     List<InlineKeyboardButton> row = new ArrayList<>();
 
-                    for(int i1 = 0; i1 < matrixButton.get(i).size(); i1++){
+                    for (int i1 = 0; i1 < matrixButton.get(i).size(); i1++) {
 
                         InlineKeyboardButton button = new InlineKeyboardButton();
 
                         button.setText(matrixButton.get(i).get(i1).getText());
 
-                        if(matrixButton.get(i).get(i1).getCallbackData() != null){
+                        if (matrixButton.get(i).get(i1).getCallbackData() != null) {
                             button.setCallbackData(matrixButton.get(i).get(i1).getCallbackData());
                         }
 
-                        if(matrixButton.get(i).get(i1).getUrl() != null){
+                        if (matrixButton.get(i).get(i1).getUrl() != null) {
                             button.setUrl(matrixButton.get(i).get(i1).getUrl());
                         }
 
@@ -100,8 +114,8 @@ class Datatron extends TelegramLongPollingBot {
                     e.printStackTrace();
                 }
 
+            }
         }
-
 //        //System.out.println(update);
 //
 //        if(update.hasCallbackQuery()){

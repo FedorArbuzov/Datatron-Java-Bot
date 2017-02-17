@@ -1,5 +1,8 @@
 package answerPackage;
 
+import com.sun.istack.internal.Nullable;
+
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -8,9 +11,10 @@ import java.util.List;
 public class Answer {
 
     private String textAnswer = null;
-    private List<List<ButtonTelegram>> matrixButton = null;
+    private boolean hasMarixButton;
+    private ArrayList<ArrayList<ButtonTelegram>> matrixButton = null;
 
-    public Answer(String _textAnswer, List<List<ButtonTelegram>> _matrixButton){
+    public Answer(String _textAnswer, ArrayList<ArrayList<ButtonTelegram>> _matrixButton){
 
         textAnswer = _textAnswer;
         matrixButton = _matrixButton;
@@ -21,7 +25,8 @@ public class Answer {
         return textAnswer;
     }
 
-    public List<List<ButtonTelegram>> getMatrixButton(){
+
+    public ArrayList<ArrayList<ButtonTelegram>> getMatrixButton(){
         return matrixButton;
     }
 
