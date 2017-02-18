@@ -43,6 +43,18 @@ public class CallbackAnswer {
 
         Answer answer;
         switch (callbackAnswer){
+
+            // Text: Национальная оборона; Callback: NationalDefence; Url: null
+            // Text: Национальная безопасность; Callback: NationalSecurity; Url: null
+            // Text: Национальная экономика; Callback: NationalEconomics; Url: null
+            // Text: Образование; Callback: Education; Url: null
+            // Text: ЖКХ; Callback: HSC; Url: null
+            // Text: Культура; Callback: Culture; Url: null
+            // Text: Спорт; Callback: Sports; Url: null
+            // Text: Социальная политика; Callback: SocialPolicy; Url: null
+            // Text: Защита окружающей среды; Callback: EnvironmentProtection; Url: null
+            // Text: Общие расходы; Callback: OtherSpendings; Url: null
+
             case "Revenues":case "Spendings":case "Deficit":
         }
      //   CallbackAnswer callback = CallbackAnswer(callbackAnswer);
