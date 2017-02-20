@@ -16,6 +16,7 @@ public class CallbackAnswer {
     // Text: Фактические; Callback: Fact; Url: null
     // Text: Текущие; Callback: Current; Url: null
 
+
     // Text: Национальная оборона; Callback: NationalDefence; Url: null
     // Text: Национальная безопасность; Callback: NationalSecurity; Url: null
     // Text: Национальная экономика; Callback: NationalEconomics; Url: null
