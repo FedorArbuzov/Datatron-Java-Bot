@@ -12,6 +12,7 @@ public final class ListButtonTelegram {
     // Text: Расходы; Callback: Spendings; Url: null
     // Text: Дефицит; Callback: Deficit; Url: null
 
+    // Text: Все; Callback: TNTMoney; Url: null
     // Text: Налоговые; Callback: TaxMoney; Url: null
     // Text: Неналоговые; Callback: NonTaxMoney; Url: null
 
