@@ -1,10 +1,20 @@
 package Commands;
 
+import answerPackage.Answer;
+
 /**
  * Created by shirirukukharchuk on 19/02/2017.
  */
-public class CrCpmmand extends Command {
-    public CrCpmmand(String _answerText) { super(_answerText); }
+public class CrCommand extends Command {
+    public CrCommand(String _answerText) { super(_answerText); }
+
+    public Answer getAnswer(){
+        Answer answer;
+
+        answer = new Answer(ConstantsCommands.MAIN_ANSWER, null);
+
+        return answer;
+    }
 
     int editdist(String S1, String S2) {
         int m = S1.length(), n = S2.length();

@@ -1,3 +1,4 @@
+import Commands.CrCommand;
 import Commands.HelpCommand;
 import Commands.SearchCommand;
 import Commands.StartCommand;
@@ -50,7 +51,8 @@ public class MessageHandler {
                 return search.getAnswer();
             }
             else if(text.startsWith("/cr")){
-
+                CrCommand cr = new CrCommand(text);
+                return cr.getAnswer();
             }
             else{
 

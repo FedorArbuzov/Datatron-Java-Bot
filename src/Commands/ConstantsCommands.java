@@ -31,6 +31,8 @@ public final class ConstantsCommands {
 
     public static String SEARCH_STEP1 = "Нажмите на одну из кнопок!";
 
+    public static String MAIN_ANSWER = "Спасибо! Сейчас я сформирую ответ и отправлю его вам!!";
+
     public static List<String> KEY_WORDS = Arrays.asList("год",
                 "налоговые",
                 "неналоговые",
