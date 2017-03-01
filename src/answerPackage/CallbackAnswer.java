@@ -47,6 +47,12 @@ public class CallbackAnswer {
     public Answer getAnswer(){
 
         Answer answer;
+        String _textAnswer;
+
+        ArrayList<ArrayList<ButtonTelegram>> matrixButton = new ArrayList<>();
+
+        ArrayList<ButtonTelegram> buttonRow = new ArrayList<>();
+
         switch (callbackAnswer){
 
 
@@ -55,15 +61,15 @@ public class CallbackAnswer {
             // Text: Дефицит; Callback: Deficit; Url: null
 
             case "Revenues":
-                    String _textAnswer = "Налоговые или неналоговые?";
+                    _textAnswer = "Налоговые или неналоговые?";
 
                 // Text: Все; Callback: TNTMoney; Url: null
                 // Text: Налоговые; Callback: TaxMoney; Url: null
                 // Text: Неналоговые; Callback: NonTaxMoney; Url: null
 
-                ArrayList<ArrayList<ButtonTelegram>> matrixButton = new ArrayList<>();
+                matrixButton = new ArrayList<>();
 
-                ArrayList<ButtonTelegram> buttonRow = new ArrayList<>();
+                buttonRow = new ArrayList<>();
                 buttonRow.add(new ButtonTelegram("Все", "TNTMoney", null));
                 matrixButton.add(buttonRow);
 
@@ -78,21 +84,89 @@ public class CallbackAnswer {
                 answer = new Answer(_textAnswer, matrixButton);
                 return answer;
 
-            // Text: Национальная оборона; Callback: NationalDefence; Url: null
-            // Text: Национальная безопасность; Callback: NationalSecurity; Url: null
-            // Text: Национальная экономика; Callback: NationalEconomics; Url: null
-            // Text: Образование; Callback: Education; Url: null
-            // Text: ЖКХ; Callback: HSC; Url: null
-            // Text: Культура; Callback: Culture; Url: null
-            // Text: Спорт; Callback: Sports; Url: null
-            // Text: Социальная политика; Callback: SocialPolicy; Url: null
-            // Text: Защита окружающей среды; Callback: EnvironmentProtection; Url: null
-            // Text: Общие расходы; Callback: OtherSpendings; Url: null
 
-            case "Spendings":case "Deficit":
+            case "Spendings":
+                _textAnswer = "Какая сфера расходов вас интересует?";
+
+
+
+                // Text: Общегосударственные вопросы; Callback: GovernmentQ ; Url: null
+                // Text: Национальная оборона; Callback: NationalDefence; Url: null
+                // Text: Национальная безопасность; Callback: NationalSecurity; Url: null
+                // Text: Национальная экономика; Callback: NationalEconomics; Url: null
+                // Text: Образование; Callback: Education; Url: null
+                // Text: ЖКХ; Callback: HSC; Url: null
+                // Text: Культура; Callback: Culture; Url: null
+                // Text: Спорт; Callback: Sports; Url: null
+                // Text: Социальная политика; Callback: SocialPolicy; Url: null
+                // Text: Здравоохранение; Callback: Medicine; Url: null
+                // Text: Защита окружающей среды; Callback: EnvironmentProtection; Url: null
+                // Text: Общие расходы; Callback: OtherSpendings; Url: null
+
+                matrixButton = new ArrayList<>();
+
+                buttonRow = new ArrayList<>();
+                buttonRow.add(new ButtonTelegram("Общегосударственные вопросы", "GovernmentQ", null));
+                matrixButton.add(buttonRow);
+
+                buttonRow = new ArrayList<>();
+                buttonRow.add(new ButtonTelegram("Национальная оборона", "NationalDefence", null));
+                buttonRow.add(new ButtonTelegram("Образование", "Education", null));
+                matrixButton.add(buttonRow);
+
+                buttonRow = new ArrayList<>();
+                buttonRow.add(new ButtonTelegram("Национальная безопасность", "NationalSecurity", null));
+                buttonRow.add(new ButtonTelegram("Национальная экономика", "NationalEconomics", null));
+                matrixButton.add(buttonRow);
+
+                buttonRow = new ArrayList<>();
+                buttonRow.add(new ButtonTelegram("ЖКХ", "HSC", null));
+                buttonRow.add(new ButtonTelegram("Культура", "Culture", null));
+                buttonRow.add(new ButtonTelegram("Спорт", "Sports", null));
+                matrixButton.add(buttonRow);
+
+                buttonRow = new ArrayList<>();
+                buttonRow.add(new ButtonTelegram("Защита окружающей среды", "EnvironmentProtection", null));
+                matrixButton.add(buttonRow);
+
+                buttonRow = new ArrayList<>();
+                buttonRow.add(new ButtonTelegram("Здравоохранение", "Medicine", null));
+                buttonRow.add(new ButtonTelegram("Социальная политика", "SocialPolicy", null));
+                matrixButton.add(buttonRow);
+
+                buttonRow = new ArrayList<>();
+                buttonRow.add(new ButtonTelegram("Общие расходы", "OtherSpendings", null));
+                matrixButton.add(buttonRow);
+
+                answer = new Answer(_textAnswer, matrixButton);
+                return answer;
+
+            case "Deficit":
+                _textAnswer = "Выберите тип:";
+
+                // Text: Плановые; Callback: Planned; Url: null
+                // Text: Фактические; Callback: Fact; Url: null
+                // Text: Текущие; Callback: Current; Url: null
+
+                matrixButton = new ArrayList<>();
+
+                buttonRow = new ArrayList<>();
+                buttonRow.add(new ButtonTelegram("Плановые", "Planned", null));
+                matrixButton.add(buttonRow);
+
+                buttonRow = new ArrayList<>();
+                buttonRow.add(new ButtonTelegram("Фактические", "Fact", null));
+                matrixButton.add(buttonRow);
+
+                buttonRow = new ArrayList<>();
+                buttonRow.add(new ButtonTelegram("Текущие", "Current", null));
+                matrixButton.add(buttonRow);
+
+                answer = new Answer(_textAnswer, matrixButton);
+                return answer;
+
         }
-     //   CallbackAnswer callback = CallbackAnswer(callbackAnswer);
-     //   return callback.getAnswer();
+
         answer = new Answer("Вы нажали на кнопку!", null);
         return answer;
     }
