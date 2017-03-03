@@ -11,6 +11,7 @@ public class CrCommand extends Command {
     public Answer getAnswer(){
         Answer answer;
 
+
         answer = new Answer(ConstantsCommands.MAIN_ANSWER, null);
 
         return answer;
