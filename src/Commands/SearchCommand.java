@@ -3,6 +3,11 @@ package Commands;
 import answerPackage.Answer;
 import answerPackage.ButtonTelegram;
 
+import javax.xml.bind.SchemaOutputResolver;
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.net.URL;
+import java.net.URLConnection;
 import java.util.ArrayList;
 
 /**
@@ -12,6 +17,21 @@ public class SearchCommand extends Command {
 
     public SearchCommand(String _answerText){
         super(_answerText);
+    }
+
+    private String makeRec(String url) throws Exception {
+
+        URL getURL = new URL(url);
+        URLConnection yc = getURL.openConnection();
+        BufferedReader in = new BufferedReader(
+                new InputStreamReader(
+                        yc.getInputStream()));
+        String inputLine;
+
+        while ((inputLine = in.readLine()) != null)
+            System.out.println(inputLine);
+        in.close();
+        return null;
     }
 
     @Override
@@ -42,8 +62,14 @@ public class SearchCommand extends Command {
             return answer;
         }
         else{
-            Answer answer = new Answer(answerText.substring(0, 6), null);
-            return answer;
+            try {
+                System.out.println(makeRec("http://127.0.0.1/hello"));
+                return null;
+            }
+            catch (Exception ex){
+                System.out.println("Hello error");
+                return null;
+            }
         }
 
     }
