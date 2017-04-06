@@ -63,8 +63,16 @@ public class SearchCommand extends Command {
         }
         else{
             try {
-                System.out.println(makeRec("http://127.0.0.1/hello"));
-                return null;
+                //System.out.println(makeRec("http://127.0.0.1/hello"));
+                //return null;
+                String delims = "[/search ]";
+                String[] tokens = answerText.split(delims);
+                System.out.println(tokens[1]);
+                String str="http://127.0.0.1:8019/"+tokens[1];
+                System.out.println(answerText);
+                System.out.println(str);
+                Answer answer = new Answer(makeRec(str), null);
+                return answer;
             }
             catch (Exception ex){
                 System.out.println("Hello error");

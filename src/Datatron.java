@@ -244,5 +244,6 @@ class Datatron extends TelegramLongPollingBot {
     public String getBotToken() {
         // TODO
         return "266507345:AAE7WYiv2nm_u9Hf0CaO2saDZNYuMrQsfsU";
+        //return "241227423:AAE6Px2Cw1h13850rp_EdHLGMXzGZ9sIEEI";
     }
 }
