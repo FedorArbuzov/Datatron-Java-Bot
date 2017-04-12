@@ -19,7 +19,12 @@ public class SearchCommand extends Command {
         super(_answerText);
     }
 
-    private String makeRec(String url) throws Exception {
+
+
+
+    private String resultLine="";
+
+    private void makeRec(String url) throws Exception {
 
         URL getURL = new URL(url);
         URLConnection yc = getURL.openConnection();
@@ -28,10 +33,11 @@ public class SearchCommand extends Command {
                         yc.getInputStream()));
         String inputLine;
 
-        while ((inputLine = in.readLine()) != null)
+        while ((inputLine = in.readLine()) != null) {
             System.out.println(inputLine);
+            resultLine += inputLine;
+        }
         in.close();
-        return null;
     }
 
     @Override
@@ -65,18 +71,28 @@ public class SearchCommand extends Command {
             try {
                 //System.out.println(makeRec("http://127.0.0.1/hello"));
                 //return null;
-                String delims = "[/search ]";
+
+                String delims = "[ ]";
                 String[] tokens = answerText.split(delims);
+
                 System.out.println(tokens[1]);
+
                 String str="http://127.0.0.1:8019/"+tokens[1];
+
                 System.out.println(answerText);
                 System.out.println(str);
-                Answer answer = new Answer(makeRec(str), null);
+
+
+                makeRec(str);
+                System.err.println(resultLine);
+                Answer answer = new Answer(resultLine, null);
                 return answer;
             }
             catch (Exception ex){
+
                 System.out.println("Hello error");
                 return null;
+
             }
         }
 
