@@ -6,9 +6,12 @@ import answerPackage.ButtonTelegram;
 import javax.xml.bind.SchemaOutputResolver;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
+import java.lang.reflect.Array;
 import java.net.URL;
 import java.net.URLConnection;
+import java.nio.charset.Charset;
 import java.util.ArrayList;
+import java.util.Arrays;
 
 /**
  * Created by fedor on 12.02.17.
@@ -73,11 +76,14 @@ public class SearchCommand extends Command {
                 //return null;
 
                 String delims = "[ ]";
-                String[] tokens = answerText.split(delims);
+//                String[] tokens = answerText.split(delims);
 
-                System.out.println(tokens[1]);
+                String [] tokens = answerText.split(" ", 2);
+                String request = new String(tokens[1].getBytes(), "UTF-8");
 
-                String str="http://127.0.0.1:8019/"+tokens[1];
+                System.out.println(request);
+
+                String str="http://127.0.0.1:8019/"+request;
 
                 System.out.println(answerText);
                 System.out.println(str);
