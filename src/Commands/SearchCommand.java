@@ -1,7 +1,9 @@
 package Commands;
 
+import Commands.VisualisationModule.JSONParse;
 import answerPackage.Answer;
 import answerPackage.ButtonTelegram;
+import com.sun.scenario.effect.impl.sw.sse.SSEBlend_SRC_OUTPeer;
 
 import javax.xml.bind.SchemaOutputResolver;
 import java.io.BufferedReader;
@@ -91,13 +93,16 @@ public class SearchCommand extends Command {
 
                 makeRec(str);
                 System.err.println(resultLine);
-                Answer answer = new Answer(resultLine, null);
+
+                JSONParse jsonParse = new JSONParse();
+                String Res = jsonParse.parseJSON(resultLine);
+                Answer answer = new Answer(Res, null);
                 return answer;
             }
             catch (Exception ex){
 
-                System.out.println("Hello error");
-                return null;
+
+                return new Answer("error", null);
 
             }
         }

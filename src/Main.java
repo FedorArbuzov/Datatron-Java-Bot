@@ -12,8 +12,6 @@ public class Main {
 
     public static void main(String[] args) {
 
-        JSONParse jp = new JSONParse();
-        jp.parseJSON();
         ApiContextInitializer.init();
 
         TelegramBotsApi botsApi = new TelegramBotsApi();
