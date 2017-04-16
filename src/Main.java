@@ -1,3 +1,5 @@
+import Commands.VisualisationModule.JSONParse;
+import jdk.nashorn.api.scripting.JSObject;
 import org.telegram.telegrambots.ApiContextInitializer;
 import org.telegram.telegrambots.TelegramBotsApi;
 import org.telegram.telegrambots.exceptions.TelegramApiException;
@@ -10,7 +12,8 @@ public class Main {
 
     public static void main(String[] args) {
 
-
+        JSONParse jp = new JSONParse();
+        jp.parseJSON();
         ApiContextInitializer.init();
 
         TelegramBotsApi botsApi = new TelegramBotsApi();
